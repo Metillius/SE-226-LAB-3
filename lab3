@@ -1,0 +1,148 @@
+#include <iostream>
+using namespace std;
+
+class Node{
+public:
+    int numm;
+    Node *next;
+
+
+    Node(int a , Node *n ){
+        numm =a ; next = n ;
+    }
+};
+
+class Stack{
+
+public:
+
+    Node*top = nullptr;
+    int size = 0;
+    int maxsize = 5;
+
+    void push(int x){
+
+        Node *stackk = new Node (x, nullptr);
+
+
+        if ( size < maxsize )
+        {
+
+            if( top == nullptr )
+            {
+                top = stackk;
+                top->next = nullptr;
+
+                size ++;
+            }
+
+            //PUSHING A NEW DATA
+            else
+            {
+                stackk->next = top;
+                top = stackk;
+                size ++;
+
+            }
+            cout<< " pushed data: " << stackk->numm << endl;
+
+        }
+
+        else {
+            cout<< "you cannot exceed max size " << endl;
+        }
+
+
+
+
+
+    }
+
+
+
+    void printAndTop() {
+
+
+        Node* temp;
+
+
+        if(top == NULL){
+            cout<< "EMPTY STACK";
+
+
+
+        }
+
+        else{
+            cout<< "the top element is: " << top-> numm <<  endl;
+            temp = top;
+            cout<< "                                          Display of the Stack" <<endl ;
+            cout<<"                                          ";
+            while(temp != nullptr){
+
+                cout<< temp->numm <<"->";
+                temp = temp->next;
+            }
+
+        }
+
+    }
+
+    void deleteTop()
+    {
+        Node *temp2;
+
+        temp2 = top;
+
+        temp2->next = top;
+
+
+
+
+    }
+
+    void printSize()
+    {
+        cout<< " \n the size of the stack is: "<< size << endl;
+    }
+
+
+};
+
+
+
+
+
+
+
+
+
+int main() {
+
+    Stack *mystack = new Stack();
+
+
+
+
+
+
+    mystack->push(6);
+    mystack->push(7);
+    mystack->push(9);
+    mystack->push(3);
+    mystack->push(1);
+    mystack->push(4);
+
+    mystack->printAndTop();
+    mystack->printSize();
+
+
+
+
+
+
+
+
+
+    return 0;
+}
